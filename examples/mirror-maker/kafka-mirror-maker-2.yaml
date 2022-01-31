@@ -5,11 +5,11 @@ metadata:
 spec:
   version: 3.0.0
   replicas: 1
-  connectCluster: "my-target-cluster"
+  connectCluster: https://emp-cdt-west-2-8022bba3.hcp.westeurope.azmk8s.io:443 #"my-target-cluster"
   clusters:
-  - alias: "my-source-cluster"
+  - alias: emp-cdt-north-1 #"my-source-cluster"
     bootstrapServers: my-source-cluster-kafka-bootstrap:9092
-  - alias: "my-target-cluster"
+  - alias: emp-cdt-weast-2 #"my-target-cluster"
     bootstrapServers: my-target-cluster-kafka-bootstrap:9092
     config:
       # -1 means it will use the default replication factor configured in the broker
@@ -17,8 +17,8 @@ spec:
       offset.storage.replication.factor: -1
       status.storage.replication.factor: -1
   mirrors:
-  - sourceCluster: "my-source-cluster"
-    targetCluster: "my-target-cluster"
+  - sourceCluster: https://emp-cdt-north-1-7e6cfb76.hcp.northeurope.azmk8s.io:443 #"my-source-cluster"
+    targetCluster: https://emp-cdt-west-2-8022bba3.hcp.westeurope.azmk8s.io:443 #"my-target-cluster"
     sourceConnector:
       config:
         replication.factor: 1
